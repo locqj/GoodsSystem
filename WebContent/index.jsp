@@ -19,6 +19,7 @@
 			<input type="submit">
 		</p>
 	</form>
+	<a href="register">点击注册</a>
 
 	<font color="red">${message}</font>
 

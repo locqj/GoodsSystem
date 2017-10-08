@@ -1,4 +1,4 @@
-package com.jackie.test;
+package com.jackie.dao;
 
 import java.io.Reader;
 
@@ -7,12 +7,11 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
-
-
 import com.jackie.mybatis.inter.IUserOperation;
 import com.jackie.vo.Users;
 
-public class Test {
+public class UsersDao {
+	
     private static SqlSessionFactory sqlSessionFactory;
     private static Reader reader; 
 
@@ -32,10 +31,10 @@ public class Test {
     /**
      * 增加后要commit
      */
-    public void addUser() {
+    public void addUser(String name, String pwd) {
         Users user = new Users();
-        user.setName("place");
-        user.setPwd("test_add");
+        user.setName(name);
+        user.setPwd(pwd);
         user.setCode("021");
         SqlSession session = sqlSessionFactory.openSession();
         try {
@@ -49,17 +48,5 @@ public class Test {
         }
     }
     
-    public static void main(String[] args) {
-        try {
-            Test test = new Test();
-            // test.getUserByID(1);
-            // test.getUserList("test1");
-             test.addUser();
-            // test.updateUser();
-            // test.deleteUser(6);
-
-        } catch (Exception e) {
-            System.out.println(e.getMessage());
-        }
-    }
+    
 }

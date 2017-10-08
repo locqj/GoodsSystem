@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.jackie.service.RegisterService;;
+import com.jackie.service.RegisterService;
 
 @Controller
 public class RegisterController {
