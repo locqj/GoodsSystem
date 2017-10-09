@@ -21,14 +21,14 @@ public class IndexController {
 	@Resource
 	HttpServletRequest request;	
 	@RequestMapping("index")
-	public ModelAndView doLogin(HttpSession session) throws NoSuchAlgorithmException, UnsupportedEncodingException{
-		
-		String loginPageUrl = "index";
-		String successPageUrl = "success";
-		
-		String uname = request.getParameter("uname");
-		String upasswd = request.getParameter("upasswd");
+	public ModelAndView superUser(HttpSession session) throws NoSuchAlgorithmException, UnsupportedEncodingException{
 		return new ModelAndView("index");
+		
+	}
+	
+	@RequestMapping("indexc")
+	public ModelAndView normalUser(HttpSession session) throws NoSuchAlgorithmException, UnsupportedEncodingException{
+		return new ModelAndView("indexc");
 		
 	}
 }

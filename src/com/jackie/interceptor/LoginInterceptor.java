@@ -16,25 +16,21 @@ public class LoginInterceptor implements HandlerInterceptor {
 	protected Logger log = Logger.getLogger(getClass());
 
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handle) throws Exception {
-
+		System.out.printf("asd");
 		// 创建session
 		HttpSession session = request.getSession();
 
-		// 无需登录，允许访问的地址
-		String[] allowUrls = new String[] { "/", "/register" };
-
-		// 获取请求地址
-		String url = request.getRequestURL().toString();
+//		// 无需登录，允许访问的地址
+//		String[] allowUrls = new String[] { "/", "/register", "/login", "/logout"};
+//
+//		// 获取请求地址
+//		String url = request.getRequestURL().toString();
 
 		// 获得session中的用户
-		Users user = (Users) session.getAttribute("username");
-
-		for (String strUrl : allowUrls) {
-			if (url.contains(strUrl)) {
-				return true;
-			}
-		}
-		System.out.printf("asd");
+		String user = (String) session.getAttribute("username");
+		System.out.print(user);
+	
+		
 		if (user == null) {
 			// 重定向
 			 response.sendRedirect(request.getContextPath()+"/");

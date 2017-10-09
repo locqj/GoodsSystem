@@ -26,10 +26,5 @@
 	
 
 </body>
-<script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-<script type="text/javascript">
-(function(){
-})();
 
-</script>
 </html>

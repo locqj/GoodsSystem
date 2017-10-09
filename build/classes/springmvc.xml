@@ -10,6 +10,10 @@
 		<mvc:interceptor>
 			<!-- 拦截全部地址 -->
 			<mvc:mapping path="/**" />
+			<!-- 不想被拦截的路径 -->
+			<mvc:exclude-mapping path="/register"/>
+			<mvc:exclude-mapping path="/"/>
+			<mvc:exclude-mapping path="/login"/>
 			<!-- 登录拦截类 -->
 			<bean id="loginInterceptor"
 				class="com.jackie.interceptor.LoginInterceptor">

@@ -25,8 +25,8 @@ public class LoginController {
 	@RequestMapping("login")
 	public ModelAndView doLogin(HttpSession session) throws NoSuchAlgorithmException, UnsupportedEncodingException{
 		
-		String loginPageUrl = "index";
-		String successPageUrl = "success";
+		String loginPageUrl = "login";
+		String successPageUrl = "index";
 		
 		String uname = request.getParameter("uname");
 		String upasswd = request.getParameter("upasswd");

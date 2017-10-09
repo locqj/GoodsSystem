@@ -31,17 +31,23 @@ public class LoginService {
 			String message = "密码不得为空";
 			return new ModelAndView(loginPageUrl, "message", message);
 		} else {
+			
 			UsersDao userOperation = new UsersDao();
 			String sqlPwd = userOperation.getUserPwd(uname);
 			if (sqlPwd == "null") {
 				return new ModelAndView(loginPageUrl, "message", "不存在该用户");
 			}
 			if(checkpassword(upasswd, sqlPwd)) {
-                Users user = new Users();
-                user.setName(uname);
+				Users user= userOperation.getUserList(uname);//获取用户
                 session.setAttribute("username", user.getName());
-                System.out.println(user.getName());
-				return new ModelAndView(successPageUrl);
+                System.out.println(user.getStatus());
+                //判断用户类型 1--普通用户， 2--超级用户
+                if(user.getStatus() == 1) {
+                	return new ModelAndView("redirect:/indexc");
+                } else {
+                	return new ModelAndView("redirect:/index");
+                }
+				
 			} else {
 				return new ModelAndView(loginPageUrl, "message", "用户名或者密码错误");
 			}

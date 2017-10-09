@@ -52,8 +52,8 @@ public class UsersDao {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
 			IUserOperation userOperation = session.getMapper(IUserOperation.class);
-			List<Users> users = userOperation.selectUsersByName(userName);
-			if (users.isEmpty()) {
+			Users users = userOperation.selectUsersByName(userName);
+			if (users != null) {
 				return 1;
 			} else {
 				return 0;
@@ -91,5 +91,56 @@ public class UsersDao {
 		}
 		return "null";
 	}
+	/**
+	 * 获取用户信息
+	 * @param name
+	 * @return
+	 */
+    public Users getUserList(String userName) {
+        SqlSession session = sqlSessionFactory.openSession();
+        try {
+            IUserOperation userOperation = session
+                    .getMapper(IUserOperation.class);
+            Users users = userOperation.selectUsersByName(userName);
+            return users;
+
+        } finally {
+            session.close();
+        }
+		
+    }
+    /**
+     * 获取普通用户列表
+     * @return
+     */
+    public List<Users> getClientUsers() {
+    	 SqlSession session = sqlSessionFactory.openSession();
+         try {
+             IUserOperation userOperation = session
+                     .getMapper(IUserOperation.class);
+             List<Users> users = userOperation.getClientUsers();
+             for (Users user : users) {
+                 System.out.println(user.getId() + ":" + user.getName());
+             }
+             return users;
+
+         } finally {
+             session.close();
+         }
+    }
+    public int delUser(int id){
+    	
+   	 SqlSession session = sqlSessionFactory.openSession();
+     try {
+         IUserOperation userOperation = session
+                 .getMapper(IUserOperation.class);
+         int status = userOperation.delUser(id);
+         session.commit();
+         return status;
+
+     } finally {
+         session.close();
+     }
+    }
 
 }

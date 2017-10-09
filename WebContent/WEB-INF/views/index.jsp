@@ -7,6 +7,18 @@
 <title>Insert title here</title>
 </head>
 <body>
-首页
+超级首页
+	<h1>登录成功</h1>
+<%
+String ls_str=null;
+ls_str=(String)session.getAttribute("username");
+out.println("从session里取出的值为："+ls_str);
+%>
+<a href="logout">logout</a>
+<ul>
+	<li><a href="useradmin/index">普通用户管理</a></li>
+	<li><a href="index">易耗品入库</a></li>
+	<li><a href="index">易耗品类别管理</a></li>
+</ul>
 </body>
 </html>

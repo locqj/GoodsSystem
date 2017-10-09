@@ -5,10 +5,23 @@ public class Users {
 	private String pwd;
 	private String code;
 	private int id;
+	private int status;
+	private int stataus_del;
 	
 	
-	
-//	public Users(String name, String pwd, String code) {
+public int getStatus() {
+		return status;
+	}
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	public int getStataus_del() {
+		return stataus_del;
+	}
+	public void setStataus_del(int stataus_del) {
+		this.stataus_del = stataus_del;
+	}
+	//	public Users(String name, String pwd, String code) {
 //		super();
 //		this.name = name;
 //		this.pwd = pwd;
