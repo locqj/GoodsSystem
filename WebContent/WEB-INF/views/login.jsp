@@ -20,6 +20,11 @@
 		</p>
 	</form>
 	<a href="register">点击注册</a>
+	<%
+String ls_str=null;
+ls_str=(String)session.getAttribute("username");
+out.println("从session里取出的值为："+ls_str);
+%>
 	<font color="red">${message}</font>
 
 </body>

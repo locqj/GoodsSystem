@@ -4,16 +4,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>登录成功</title>
+<title>Insert title here</title>
 </head>
 <body>
-
-	<h1>登录成功</h1>
-<%
-String ls_str=null;
-ls_str=(String)session.getAttribute("username");
-out.println("从session里取出的值为："+ls_str);
-%>
-<a href="logout">logout</a>
+首页
 </body>
 </html>

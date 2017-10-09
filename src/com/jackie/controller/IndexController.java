@@ -1,5 +1,4 @@
 package com.jackie.controller;
- 
 
 import java.io.UnsupportedEncodingException;
 import java.security.NoSuchAlgorithmException;
@@ -15,14 +14,13 @@ import org.springframework.web.servlet.ModelAndView;
 import com.jackie.service.LoginService;
 
 @Controller
-public class LoginController {
-
+public class IndexController {
 	@Resource
 	LoginService service;
 	
 	@Resource
 	HttpServletRequest request;	
-	@RequestMapping("login")
+	@RequestMapping("index")
 	public ModelAndView doLogin(HttpSession session) throws NoSuchAlgorithmException, UnsupportedEncodingException{
 		
 		String loginPageUrl = "index";
@@ -30,23 +28,7 @@ public class LoginController {
 		
 		String uname = request.getParameter("uname");
 		String upasswd = request.getParameter("upasswd");
-		return service.doLogin(session, loginPageUrl, successPageUrl, uname, upasswd);
+		return new ModelAndView("index");
 		
 	}
-	
-    
-  /** 
-   * 退出系统 
-   * @param session 
-   *          Session 
-   * @return 
-   * @throws Exception 
-   */  
-  @RequestMapping("logout")  
-  public String logout(HttpSession session) throws Exception{  
-      //清除Session  
-      session.invalidate();
-      return "login";
-  }
-	
 }

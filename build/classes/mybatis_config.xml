@@ -4,8 +4,7 @@
 <configuration>
     <typeAliases> 
         <typeAlias alias="Users" type="com.jackie.vo.Users"/> 
-    </typeAliases> 
-  
+    </typeAliases>
     <environments default="development">
         <environment id="development">
         <transactionManager type="JDBC"/>

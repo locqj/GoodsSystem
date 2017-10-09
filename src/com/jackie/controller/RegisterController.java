@@ -1,5 +1,8 @@
 package com.jackie.controller;
 
+import java.io.UnsupportedEncodingException;
+import java.security.NoSuchAlgorithmException;
+
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
@@ -23,11 +26,10 @@ public class RegisterController {
 	}
 	
 	@RequestMapping("toregister")
-	public ModelAndView doRegister(){
+	public ModelAndView doRegister() throws NoSuchAlgorithmException, UnsupportedEncodingException{
 		
 		String registerUrl = "register";
-		String successPageUrl = "success";
-		
+		String successPageUrl = "/";
 		String uname = request.getParameter("uname");
 		String upasswd = request.getParameter("upasswd");
 		String uspasswd = request.getParameter("uspasswd");
