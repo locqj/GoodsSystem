@@ -12,7 +12,7 @@
 	<ul>
 		<c:forEach var="list" items="${users}">
 
-			<li>
+			<li id="L${list.id}">
 				<tr>${list.id}</tr>
 				<tr>${list.name}</tr>
 				<tr><button onclick="del(${list.id})">删除</button></tr>
@@ -24,9 +24,14 @@
 <script type="text/javascript" src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript">
 function del(id) {
-	$.post('del', {id: id}, function(data){
-		alert("ok")
-	});
+	var r = confirm("确定删除吗？");
+	if(r){
+		$.post('del', {id: id}, function(data){
+			alert('删除成功');
+			$('#L'+id).hide();
+		});	
+	}
+	
 }
 
 </script>

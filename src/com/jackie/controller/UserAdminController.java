@@ -24,6 +24,7 @@ import com.jackie.vo.Users;
 public class UserAdminController {
 	@Resource
 	IndexService service;
+	@Resource
 	AjaxService ajaxservice;
 	@Resource
 	HttpServletRequest request;	
@@ -38,8 +39,9 @@ public class UserAdminController {
 	@RequestMapping(value="del", method=RequestMethod.POST)
 	@ResponseBody
 	public String del(int id){
-		int a = 0;
-		a = ajaxservice.delUser(id);
+		
+		int a = ajaxservice.delUser(id);
+		
 		if (a == 1) {
 			return "ok";
 		} else {
