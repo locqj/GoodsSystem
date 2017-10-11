@@ -6,14 +6,7 @@ public class GoodLogs {
 	private String time;
 	private String user_code;
 	private int num;
-	public GoodLogs(int id, String goods_code, String time, String user_code, int num) {
-		super();
-		this.id = id;
-		this.goods_code = goods_code;
-		this.time = time;
-		this.user_code = user_code;
-		this.num = num;
-	}
+ 
 	public int getId() {
 		return id;
 	}

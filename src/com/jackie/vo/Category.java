@@ -5,12 +5,6 @@ public class Category {
 	private String name;
 	private String code;
 	
-	public Category(int id, String name, String code) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.code = code;
-	}
 
 	public int getId() {
 		return id;

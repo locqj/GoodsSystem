@@ -1,1 +1,26 @@
-<?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.jackie.mybatis.inter.ICategoryOperation">
+	<!-- 返回users条数 -->
+	<select id="getCount" parameterType="string" resultType="java.lang.Integer">
+		select count(id) from category where status_del = 1
+	</select>
+	
+	<!-- all list -->
+	<select id="getList" parameterType="string" resultType="Category">
+		select * from category where status_del = 1
+	</select>
+	
+	<insert id="add" parameterType="Category" useGeneratedKeys="true"
+		keyProperty="id">
+		insert into category(name, code)
+		values(#{name},#{code})
+	</insert>
+	
+	<!-- 删除user -->
+	 <update id="delCategory" parameterType="int">
+        update category set status_del = 0 where id=#{id}
+    </update>
+</mapper>

@@ -29,9 +29,9 @@ public class UserAdminController {
 	@Resource
 	HttpServletRequest request;	
 	@RequestMapping("index")
+	
 	public ModelAndView userAdmin(HttpSession session){
 		List<Users> users= service.getClientUsers();
-		System.out.println("test");
 		return new ModelAndView("useradmin", "users", users);
 		
 	}

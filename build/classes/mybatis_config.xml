@@ -2,8 +2,11 @@
 <!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+<!-- 设置实例别名 -->
     <typeAliases> 
         <typeAlias alias="Users" type="com.jackie.vo.Users"/> 
+       <typeAlias alias="Goods" type="com.jackie.vo.Goods"/>
+        <typeAlias alias="Category" type="com.jackie.vo.Category"/> 
     </typeAliases>
     <environments default="development">
         <environment id="development">
@@ -18,7 +21,8 @@
     </environments>
     
     <mappers>
-       
-        <mapper  class="com.jackie.mybatis.inter.IUserOperation"/>
+       <mapper  class="com.jackie.mybatis.inter.ICategoryOperation"/>
+      <mapper  class="com.jackie.mybatis.inter.IGoodsOperation"/>
+       <mapper  class="com.jackie.mybatis.inter.IUserOperation"/>
     </mappers>
 </configuration>

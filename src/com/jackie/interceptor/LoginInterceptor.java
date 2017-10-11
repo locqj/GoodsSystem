@@ -16,7 +16,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 	protected Logger log = Logger.getLogger(getClass());
 
 	public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object handle) throws Exception {
-		System.out.printf("asd");
+		
 		// 创建session
 		HttpSession session = request.getSession();
 
@@ -28,7 +28,7 @@ public class LoginInterceptor implements HandlerInterceptor {
 
 		// 获得session中的用户
 		String user = (String) session.getAttribute("username");
-		System.out.print(user);
+		
 	
 		
 		if (user == null) {

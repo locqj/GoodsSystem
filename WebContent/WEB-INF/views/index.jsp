@@ -17,8 +17,8 @@ out.println("从session里取出的值为："+ls_str);
 <a href="logout">logout</a>
 <ul>
 	<li><a href="useradmin/index">普通用户管理</a></li>
-	<li><a href="categoryadmin/index">易耗品入库</a></li>
-	<li><a href="goodsadmin/index">易耗品类别管理</a></li>
+	<li><a href="categoryadmin/index">易耗品类别管理</a></li>
+	<li><a href="goodsadmin/index">易耗品入库</a></li>
 </ul>
 </body>
 </html>

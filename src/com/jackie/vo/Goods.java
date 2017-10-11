@@ -3,20 +3,12 @@ package com.jackie.vo;
 public class Goods {
 	private int id;
 	private String name;
-	private int num;
+	private String num;
 	private String category_code;
 	private String code;
 	private String time;
 	
-	public Goods(int id, String name, int num, String category_code, String code, String time) {
-		super();
-		this.id = id;
-		this.name = name;
-		this.num = num;
-		this.category_code = category_code;
-		this.code = code;
-		this.time = time;
-	}
+ 
 
 	public int getId() {
 		return id;
@@ -34,11 +26,11 @@ public class Goods {
 		this.name = name;
 	}
 
-	public int getNum() {
+	public String getNum() {
 		return num;
 	}
 
-	public void setNum(int num) {
+	public void setNum(String num) {
 		this.num = num;
 	}
 

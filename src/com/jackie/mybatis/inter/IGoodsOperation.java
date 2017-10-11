@@ -1,5 +1,8 @@
 package com.jackie.mybatis.inter;
 
-public interface IGoodsOperation {
+import com.jackie.vo.Goods;
 
+public interface IGoodsOperation {
+	public int add(Goods good);
+	public int getCount();
 }

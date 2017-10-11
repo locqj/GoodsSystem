@@ -29,9 +29,7 @@ public class UsersDao {
 		return sqlSessionFactory;
 	}
 
-	/**
-	 * 增加后要commit
-	 */
+
 	public void addUser(String name, String pwd, String code) {
 		Users user = new Users();
 		user.setName(name);
@@ -42,7 +40,7 @@ public class UsersDao {
 			IUserOperation userOperation = session.getMapper(IUserOperation.class);
 			userOperation.addUser(user);
 			session.commit();
-			System.out.println("新增用户ID：" + user.getId());
+			System.out.println("锟斤拷锟斤拷锟矫伙拷ID锟斤拷" + user.getId());
 		} finally {
 			session.close();
 		}
@@ -92,7 +90,7 @@ public class UsersDao {
 		return "null";
 	}
 	/**
-	 * 获取用户信息
+	 * 锟斤拷取锟矫伙拷锟斤拷息
 	 * @param name
 	 * @return
 	 */
@@ -110,7 +108,7 @@ public class UsersDao {
 		
     }
     /**
-     * 获取普通用户列表
+     * 锟斤拷取锟斤拷通锟矫伙拷锟叫憋拷
      * @return
      */
     public List<Users> getClientUsers() {
@@ -128,6 +126,12 @@ public class UsersDao {
              session.close();
          }
     }
+    
+    /**
+     * del user
+     * @param id
+     * @return
+     */
     public int delUser(int id){
     	
    	 SqlSession session = sqlSessionFactory.openSession();

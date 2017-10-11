@@ -7,7 +7,7 @@
 	<select id="getClientUsers" resultType="Users">
 		select * from users where status_del = 1 and status = 1
 	</select>
-	
+	<!-- 删除user -->
 	 <update id="delUser" parameterType="int">
         update users set status_del = 0 where id=#{id}
     </update>
