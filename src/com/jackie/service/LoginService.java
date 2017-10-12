@@ -25,23 +25,26 @@ public class LoginService {
 	public ModelAndView doLogin(HttpSession session, String loginPageUrl, String successPageUrl, String uname, String upasswd) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		
 		if (uname == null || "".equals(uname)) {
-			String message = "ÓÃ»§Ãû²»µÃÎª¿Õ";
+			String message = "ç”¨æˆ·åä¸å¾—ä¸ºç©º";
 			return new ModelAndView(loginPageUrl, "message", message);
 		} else if (upasswd == null || "".equals(upasswd)) {
-			String message = "ÃÜÂë²»µÃÎª¿Õ";
+			String message = "å¯†ç ä¸å¾—ä¸ºç©º";
 			return new ModelAndView(loginPageUrl, "message", message);
 		} else {
 			
 			UsersDao userOperation = new UsersDao();
 			String sqlPwd = userOperation.getUserPwd(uname);
 			if (sqlPwd == "null") {
-				return new ModelAndView(loginPageUrl, "message", "²»´æÔÚ¸ÃÓÃ»§");
+				return new ModelAndView(loginPageUrl, "message", "å¯†ç é”™è¯¯");
 			}
 			if(checkpassword(upasswd, sqlPwd)) {
-				Users user= userOperation.getUserList(uname);//»ñÈ¡ÓÃ»§
+				Users user= userOperation.getUserList(uname);
+				//å°†ç”¨æˆ·code name å­˜å…¥session
                 session.setAttribute("username", user.getName());
+                session.setAttribute("usercode", user.getCode());
+                
                 System.out.println(user.getStatus());
-                //ÅĞ¶ÏÓÃ»§ÀàĞÍ 1--ÆÕÍ¨ÓÃ»§£¬ 2--³¬¼¶ÓÃ»§
+                //1--æ™®é€šç”¨æˆ·, 2--è¶…çº§ç”¨æˆ·
                 if(user.getStatus() == 1) {
                 	return new ModelAndView("redirect:/indexc");
                 } else {
@@ -49,7 +52,7 @@ public class LoginService {
                 }
 				
 			} else {
-				return new ModelAndView(loginPageUrl, "message", "ÓÃ»§Ãû»òÕßÃÜÂë´íÎó");
+				return new ModelAndView(loginPageUrl, "message", "å¯†ç é”™è¯¯");
 			}
 			
 		}
@@ -57,12 +60,9 @@ public class LoginService {
 	}
 
 	/**
-	 * ÅĞ¶ÏÓÃ»§ÃÜÂëÊÇ·ñÕıÈ·
 	 * 
 	 * @param newpasswd
-	 *            ÓÃ»§ÊäÈëµÄÃÜÂë
 	 * @param oldpasswd
-	 *            Êı¾İ¿âÖĞ´æ´¢µÄÃÜÂë£­£­ÓÃ»§ÃÜÂëµÄÕªÒª
 	 * @return
 	 * @throws NoSuchAlgorithmException
 	 * @throws UnsupportedEncodingException
@@ -76,10 +76,9 @@ public class LoginService {
 	}
 	
 	public String EncoderByMd5(String str) throws NoSuchAlgorithmException, UnsupportedEncodingException{
-        //È·¶¨¼ÆËã·½·¨
+
         MessageDigest md5=MessageDigest.getInstance("MD5");
         BASE64Encoder base64en = new BASE64Encoder();
-        //¼ÓÃÜºóµÄ×Ö·û´®
         String newstr=base64en.encode(md5.digest(str.getBytes("utf-8")));
         return newstr;
     }

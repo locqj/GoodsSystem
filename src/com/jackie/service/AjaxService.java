@@ -3,6 +3,7 @@ package com.jackie.service;
 import org.springframework.stereotype.Service;
 
 import com.jackie.dao.CategoryDao;
+import com.jackie.dao.GoodsDao;
 import com.jackie.dao.UsersDao;
 
 @Service
@@ -25,5 +26,15 @@ public class AjaxService {
 	public int delCategory(int id){
 		CategoryDao co = new CategoryDao();
 		return co.delCategory(id);
+	}
+	
+	/**
+	 * 删除good
+	 * @param id
+	 * @return
+	 */
+	public int delGood(int id){
+		GoodsDao co = new GoodsDao();
+		return co.delGood(id);
 	}
 }

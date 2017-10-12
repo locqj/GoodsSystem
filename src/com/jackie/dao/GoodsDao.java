@@ -4,6 +4,7 @@ import java.io.Reader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -13,6 +14,7 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 import com.jackie.mybatis.inter.ICategoryOperation;
 import com.jackie.mybatis.inter.IGoodsOperation;
 import com.jackie.mybatis.inter.IUserOperation;
+import com.jackie.vo.Category;
 import com.jackie.vo.Goods;
 import com.jackie.vo.Users;
 
@@ -28,12 +30,31 @@ public class GoodsDao {
 			e.printStackTrace();
 		}
 	}
-	
-	public void addGoods(String name, String num, String category_code){
-		Date date=new Date();
-		DateFormat format=new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-		String time=format.format(date);
-		String code = "G"+this.getCount();
+
+	/**
+	 * 获取goods list
+	 * 
+	 * @return
+	 */
+	public List<Goods> getList() {
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			IGoodsOperation go = session.getMapper(IGoodsOperation.class);
+			List<Goods> goods = go.getList();
+			// for(Category c :category){
+			// System.out.println(c.getName());
+			// }
+			return goods;
+		} finally {
+			session.close();
+		}
+	}
+
+	public void addGoods(String name, String num, String category_code) {
+		Date date = new Date();
+		DateFormat format = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+		String time = format.format(date);
+		String code = "G" + this.getCount();
 		Goods good = new Goods();
 		good.setName(name);
 		good.setNum(num);
@@ -50,7 +71,7 @@ public class GoodsDao {
 			session.close();
 		}
 	}
-	
+
 	public int getCount() {
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
@@ -62,7 +83,26 @@ public class GoodsDao {
 			session.close();
 		}
 	}
-	
- 
+
+	/**
+	 * 删除消耗品
+	 * 
+	 * @param id
+	 * @return
+	 */
+	public int delGood(int id) {
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			IGoodsOperation go = session.getMapper(IGoodsOperation.class);
+			int status = go.delGood(id);
+			session.commit();
+			return status;
+
+		} finally {
+			session.close();
+		}
+	}
+
+
 
 }

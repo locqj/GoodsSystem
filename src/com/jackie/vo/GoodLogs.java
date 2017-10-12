@@ -5,7 +5,7 @@ public class GoodLogs {
 	private String goods_code;
 	private String time;
 	private String user_code;
-	private int num;
+	private String num;
  
 	public int getId() {
 		return id;
@@ -31,10 +31,10 @@ public class GoodLogs {
 	public void setUser_code(String user_code) {
 		this.user_code = user_code;
 	}
-	public int getNum() {
+	public String getNum() {
 		return num;
 	}
-	public void setNum(int num) {
+	public void setNum(String num) {
 		this.num = num;
 	}
 	

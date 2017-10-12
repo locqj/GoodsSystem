@@ -34,11 +34,17 @@
 	<hr>
 
 	<ul>
-		<c:forEach var="list" items="${categorys}">
+		<tr>ID</tr>
+		<tr>消耗品名</tr>
+		<tr>消耗品数目</tr>
+		<tr>消耗品类目</tr>
+		<c:forEach var="list" items="${goods}">
 
 			<li id="C${list.id}">
 				<tr>${list.id}</tr>
 				<tr>${list.name}</tr>
+				<tr>${list.num}</tr>
+				<tr>${list.category.name}</tr>
 				<tr>
 					<button onclick="del(${list.id})">删除</button>
 				</tr>

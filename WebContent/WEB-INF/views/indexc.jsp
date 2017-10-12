@@ -7,6 +7,16 @@
 <title>Insert title here</title>
 </head>
 <body>
-普通yonghu
+普通用户
+<%
+String ls_str=null;
+ls_str=(String)session.getAttribute("username");
+out.println("从session里取出的值为："+ls_str);
+%>
+<a href="logout">logout</a>
+<ul>
+	<li><a href="getgoods/index">申请消耗品</a></li>
+	<li><a href="download/index">导出</a></li>
+</ul>
 </body>
 </html>

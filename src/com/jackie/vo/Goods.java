@@ -1,5 +1,7 @@
 package com.jackie.vo;
 
+import java.util.List;
+
 public class Goods {
 	private int id;
 	private String name;
@@ -7,8 +9,18 @@ public class Goods {
 	private String category_code;
 	private String code;
 	private String time;
-	
+	private Category category;
  
+ 
+
+ 
+	public Category getCategory() {
+		return category;
+	}
+
+	public void setCategory(Category category) {
+		this.category = category;
+	}
 
 	public int getId() {
 		return id;

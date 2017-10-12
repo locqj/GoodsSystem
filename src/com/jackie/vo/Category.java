@@ -1,10 +1,26 @@
 package com.jackie.vo;
 
+import java.util.List;
+
 public class Category {
 	private int id;
 	private String name;
 	private String code;
+	private List<Goods> goods;
 	
+
+	@Override
+	public String toString() {
+		return "Category [id=" + id + ", name=" + name + ", code=" + code + ", goods=" + goods + "]";
+	}
+
+	public List<Goods> getGoods() {
+		return goods;
+	}
+
+	public void setGoods(List<Goods> goods) {
+		this.goods = goods;
+	}
 
 	public int getId() {
 		return id;

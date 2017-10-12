@@ -2,25 +2,46 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.jackie.mybatis.inter.ICategoryOperation">
+<mapper namespace="com.jackie.mybatis.inter.IGoodsOperation">
+	<resultMap type="Goods" id="GoodsWithCategory">
+		<id column="id" property="id" />
+		<result column="name" property="name" />
+		<result column="code" property="code" />
+		<result column="time" property="time" />
+		<result column="num" property="num" />
+		<!-- 一对一的关系 -->
+		<!-- property: 指的是属性的值, javaType：指的是元素的类型 , column 字段值 -->
+		<association property="category" column="category_code"
+			 javaType="Category">
+			<id column="code" property="code" />
+			<result column="cid" property="id" />
+			<result column="ccode" property="code" />
+			<result column="cname" property="name" />
+		</association>
+	</resultMap>
 	<!-- 返回users条数 -->
 	<select id="getCount" parameterType="string" resultType="java.lang.Integer">
-		select count(id) from goods where status_del = 1
+		select
+		count(id) from goods where status_del = 1
 	</select>
-	
-	<!-- all list -->
-	<select id="getList" parameterType="string" resultType="Goods">
-		select * from goods where status_del = 1
+
+ 
+
+	<!-- 关联查询 -->
+	<select id="getList" parameterType="string" resultMap="GoodsWithCategory">
+		select g.code "code", g.name "name", g.time "time", g.num "num", g.id "id",
+		c.name "cname", c.code "ccode", c.id "cid" from goods g, category c where g.category_code=c.code and g.status_del = 1
 	</select>
-	
+
 	<insert id="add" parameterType="Goods" useGeneratedKeys="true"
 		keyProperty="id">
 		insert into goods(name, code, category_code, time, num)
 		values(#{name},#{code}, #{category_code}, #{time}, #{num})
 	</insert>
-	
-	<!-- 删除user -->
-	 <update id="delGood" parameterType="int">
-        update goods set status_del = 0 where id=#{id}
-    </update>
+
+	<!-- 删除good -->
+	<update id="delGood" parameterType="int">
+		update goods set status_del =
+		0 where id=#{id}
+	</update>
 </mapper>

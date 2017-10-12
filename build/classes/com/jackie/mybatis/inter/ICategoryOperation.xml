@@ -19,7 +19,7 @@
 		values(#{name},#{code})
 	</insert>
 	
-	<!-- 删除user -->
+	<!-- 删除category -->
 	 <update id="delCategory" parameterType="int">
         update category set status_del = 0 where id=#{id}
     </update>
