@@ -6,7 +6,35 @@ public class GoodLogs {
 	private String time;
 	private String user_code;
 	private String num;
+	private Goods good;
+	private Users user;
+	private String status;
+	private String status_del;
  
+	public String getStatus() {
+		return status;
+	}
+	public void setStatus(String status) {
+		this.status = status;
+	}
+	public String getStatus_del() {
+		return status_del;
+	}
+	public void setStatus_del(String status_del) {
+		this.status_del = status_del;
+	}
+	public Goods getGood() {
+		return good;
+	}
+	public void setGood(Goods good) {
+		this.good = good;
+	}
+	public Users getUser() {
+		return user;
+	}
+	public void setUser(Users user) {
+		this.user = user;
+	}
 	public int getId() {
 		return id;
 	}

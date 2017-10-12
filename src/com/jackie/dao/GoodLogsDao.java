@@ -4,6 +4,7 @@ import java.io.Reader;
 import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.List;
 
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;
@@ -12,8 +13,10 @@ import org.apache.ibatis.session.SqlSessionFactoryBuilder;
 
 import com.jackie.mybatis.inter.ICategoryOperation;
 import com.jackie.mybatis.inter.IGoodLogsOperation;
+import com.jackie.mybatis.inter.IGoodsOperation;
 import com.jackie.vo.Category;
 import com.jackie.vo.GoodLogs;
+import com.jackie.vo.Goods;
 
 public class GoodLogsDao {
 	private static SqlSessionFactory sqlSessionFactory;
@@ -52,6 +55,44 @@ public class GoodLogsDao {
 			session.commit();
 			System.out.println("新增类别id" + goodlogs.getId());
 			return a;
+		} finally {
+			session.close();
+		}
+	}
+	
+	/**
+	 * 获取good_logs list
+	 * 
+	 * @return
+	 */
+	public List<GoodLogs> getList() {
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			IGoodLogsOperation glo = session.getMapper(IGoodLogsOperation.class);
+			List<GoodLogs> goodlogs = glo.getList();
+			// for(Category c :category){
+			// System.out.println(c.getName());
+			// }
+			return goodlogs;
+		} finally {
+			session.close();
+		}
+	}
+	
+	/**
+	 * 获取good_logs list
+	 * 
+	 * @return
+	 */
+	public List<GoodLogs> getListByUserCode(String user_code) {
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			IGoodLogsOperation glo = session.getMapper(IGoodLogsOperation.class);
+			List<GoodLogs> goodlogs = glo.getListByUserCode(user_code);
+			// for(Category c :category){
+			// System.out.println(c.getName());
+			// }
+			return goodlogs;
 		} finally {
 			session.close();
 		}

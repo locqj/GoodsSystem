@@ -29,6 +29,34 @@
 		</p>
 	</form>
 	<hr>
+		<ul>
+		<tr>ID</tr>
+		<tr>消耗品名</tr>
+		<tr>申请数目</tr>
+		<tr>申请状态</tr>
+		<c:forEach var="list" items="${goodlogs}">
+
+			<li id="C${list.id}">
+				<tr>${list.id}</tr>
+				<tr>${list.good.name}</tr>
+				<tr>${list.num}</tr>
+				<tr>
+					<c:choose>
+   						<c:when test="${list.status == 1}">  
+         					已通过
+   						</c:when>
+   					<c:otherwise> 
+   						待审核
+   					</c:otherwise>
+					</c:choose>		
+				</tr>
+				<tr>
+					<button onclick="del(${list.id})">删除</button>
+				</tr>
+			</li>
+
+		</c:forEach>
+	</ul>
 </body>
 <script type="text/javascript"
 	src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>

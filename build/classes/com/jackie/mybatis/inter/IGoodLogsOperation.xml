@@ -3,9 +3,39 @@
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="com.jackie.mybatis.inter.IGoodLogsOperation">
+	<resultMap type="GoodLogs" id="GoodLogsSelect">
+		<id column="id" property="id" />
+		<result column="goods_code" property="goods_code" />
+		<result column="num" property="num" />
+		<result column="status" property="status" />
+		<result column="user_code" property="user_code" />
+		<result column="time" property="time" />
+		<!-- 一对一的关系 -->
+		<!-- property: 指的是属性的值, javaType：指的是元素的类型 , column 字段值 -->
+		<association property="good" column="goods_code"
+			 javaType="Goods">
+			<id column="gid" property="id" />
+			<result column="gnum" property="num" />
+			<result column="gcode" property="code" />
+			<result column="gname" property="name" />
+		</association>
+	</resultMap>
 	<insert id="add" parameterType="GoodLogs" useGeneratedKeys="true"
 		keyProperty="id">
 		insert into good_logs(goods_code, num, time, user_code)
 		values(#{goods_code},#{num},#{time},#{user_code})
 	</insert>
+	
+	<!-- all list -->
+	<select id="getList" parameterType="string" resultMap="GoodLogsSelect">
+		select g.code "gcode", g.name "gname",  g.num "gnum", g.id "gid", l.id "id",
+		l.goods_code "goods_code", l.num "num", l.status "status", l.user_code "user_code", l.time "time"
+		 from goods g, good_logs l where l.goods_code = g.code and l.status_del = 1
+	</select>
+	<!-- 指定user_code -->
+	<select id="getListByUserCode" parameterType="string" resultMap="GoodLogsSelect">
+		select g.code "gcode", g.name "gname",  g.num "gnum", g.id "gid", l.id "id",
+		l.goods_code "goods_code", l.num "num", l.status "status", l.user_code "user_code", l.time "time"
+		 from goods g, good_logs l where l.goods_code = g.code and l.status_del = 1 and user_code = #{user_code}
+	</select>
 </mapper>
