@@ -24,43 +24,35 @@ public class RegisterService {
 	
 	Users user;
 	public ModelAndView doRegister(String registerUrl, String successPageUrl, String uname, String upasswd, String uspasswd) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-		if (uname == null || "".equals(uname)) {
-			String message = "ÓÃ»§Ãû²»µÃÎª¿Õ";
-			return new ModelAndView(registerUrl, "message", message);
-		} else if (upasswd == null || "".equals(upasswd)) {
-			String message = "ÃÜÂë²»µÃÎª¿Õ";
-			return new ModelAndView(registerUrl, "message", message);
-		} else {
-			//Ğ´Êı¾İ¿âÂß¼­
+ 
 			upasswd = EncoderByMd5(upasswd);
 			UsersDao newusers = new UsersDao();
 			
 			int distName = newusers.disUsersName(uname);
 			int count = newusers.getUsersCount();
-			String code = "T"+count;
-			if (distName == 1) {
+			String code = "U"+count;
+			if (distName == 0) {
 				newusers.addUser(uname, upasswd, code);
 				return new ModelAndView(successPageUrl);
 			} else {
-				String message = "¸ÃÓÃ»§ÒÑ´æÔÚ£¡";
+				String message = "ç”¨æˆ·å·²å­˜åœ¨";
 				return new ModelAndView(registerUrl, "message", message);
 			}
 			
-		}	
+		 	
 	}
 	
 	public String EncoderByMd5(String str) throws NoSuchAlgorithmException, UnsupportedEncodingException{
-        //È·¶¨¼ÆËã·½·¨
+ 
         MessageDigest md5=MessageDigest.getInstance("MD5");
-        BASE64Encoder base64en = new BASE64Encoder();
-        //¼ÓÃÜºóµÄ×Ö·û´®
+        BASE64Encoder base64en = new BASE64Encoder(); 
         String newstr=base64en.encode(md5.digest(str.getBytes("utf-8")));
         return newstr;
     }
 	
-	/**ÅĞ¶ÏÓÃ»§ÃÜÂëÊÇ·ñÕıÈ·
-	   * @param newpasswd ÓÃ»§ÊäÈëµÄÃÜÂë
-	   * @param oldpasswd Êı¾İ¿âÖĞ´æ´¢µÄÃÜÂë£­£­ÓÃ»§ÃÜÂëµÄÕªÒª
+	/** 
+	   * @param newpasswd 
+	   * @param oldpasswd 
 	   * @return
 	   * @throws NoSuchAlgorithmException
 	   * @throws UnsupportedEncodingException

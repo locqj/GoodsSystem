@@ -24,13 +24,7 @@ public class LoginService {
 
 	public ModelAndView doLogin(HttpSession session, String loginPageUrl, String successPageUrl, String uname, String upasswd) throws NoSuchAlgorithmException, UnsupportedEncodingException {
 		
-		if (uname == null || "".equals(uname)) {
-			String message = "用户名不得为空";
-			return new ModelAndView(loginPageUrl, "message", message);
-		} else if (upasswd == null || "".equals(upasswd)) {
-			String message = "密码不得为空";
-			return new ModelAndView(loginPageUrl, "message", message);
-		} else {
+	 
 			
 			UsersDao userOperation = new UsersDao();
 			String sqlPwd = userOperation.getUserPwd(uname);
@@ -55,7 +49,7 @@ public class LoginService {
 				return new ModelAndView(loginPageUrl, "message", "密码错误");
 			}
 			
-		}
+		 
 		
 	}
 

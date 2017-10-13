@@ -52,7 +52,7 @@ public class GoodsController {
 		String number= request.getParameter("good_num");
 		String category_code = request.getParameter("category_code");
 		service.addGoods(name, number, category_code);
-		return new ModelAndView("redirect:/goodsadmin/index");
+		return new ModelAndView("redirect:/index");
 	}
 	
 	@RequestMapping(value="del", method=RequestMethod.POST)

@@ -33,18 +33,20 @@ public class LoginController {
 		return service.doLogin(session, loginPageUrl, successPageUrl, uname, upasswd);
 		
 	}
-	
+	@RequestMapping("loginindex")
+	public ModelAndView doIndex(HttpSession session) throws NoSuchAlgorithmException, UnsupportedEncodingException{
+		return new ModelAndView("login");
+	}
     
   /** 
-   * 退出系统 
+   * 锟剿筹拷系统 
    * @param session 
    *          Session 
    * @return 
    * @throws Exception 
    */  
   @RequestMapping("logout")  
-  public String logout(HttpSession session) throws Exception{  
-      //清除Session  
+  public String logout(HttpSession session) throws Exception{
       session.invalidate();
       return "login";
   }

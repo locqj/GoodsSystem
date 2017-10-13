@@ -26,18 +26,6 @@ public class GetGoodsController {
 	GetGoodsService service;
 	@Resource
 	HttpServletRequest request;
-	
-	@RequestMapping("index")
-	public ModelAndView index(ModelMap model, HttpSession session) throws NoSuchAlgorithmException, UnsupportedEncodingException {
-		String user_code = (String) session.getAttribute("usercode"); //当前用户code
-		GoodsDao goodsdao = new GoodsDao();
-		GoodLogsDao goodlogsdao = new GoodLogsDao();
-		List<Goods> goods = goodsdao.getList();
-		List<GoodLogs> goodlogs = goodlogsdao.getListByUserCode(user_code);
-		model.put("good", goods);
-		model.put("goodlogs", goodlogs);
-		return new ModelAndView("getgoods");
-	}
 
 	@RequestMapping("toaddgoodlog")
 	public ModelAndView doAdd(ModelMap model, HttpSession session) throws UnsupportedEncodingException {
@@ -46,6 +34,6 @@ public class GetGoodsController {
 		String goods_code = request.getParameter("good_code");
 		String num = request.getParameter("good_num");
 		service.addGoodLogs(goods_code, num, user_code);
-		return new ModelAndView("redirect:/getgoods/index");
+		return new ModelAndView("redirect:/indexc");
 	}
 }

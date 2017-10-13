@@ -28,8 +28,8 @@ public class RegisterController {
 	@RequestMapping("toregister")
 	public ModelAndView doRegister() throws NoSuchAlgorithmException, UnsupportedEncodingException{
 		request.setCharacterEncoding("utf-8");
-		String registerUrl = "register";
-		String successPageUrl = "/";
+		String registerUrl = "resgister";
+		String successPageUrl = "login";
 		String uname = request.getParameter("uname");
 		String upasswd = request.getParameter("upasswd");
 		String uspasswd = request.getParameter("uspasswd");

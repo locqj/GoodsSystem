@@ -40,7 +40,7 @@ public class UsersDao {
 			IUserOperation userOperation = session.getMapper(IUserOperation.class);
 			userOperation.addUser(user);
 			session.commit();
-			System.out.println("�����û�ID��" + user.getId());
+			System.out.println("新增用户ID" + user.getId());
 		} finally {
 			session.close();
 		}
@@ -117,9 +117,7 @@ public class UsersDao {
              IUserOperation userOperation = session
                      .getMapper(IUserOperation.class);
              List<Users> users = userOperation.getClientUsers();
-             for (Users user : users) {
-                 System.out.println(user.getId() + ":" + user.getName());
-             }
+              
              return users;
 
          } finally {

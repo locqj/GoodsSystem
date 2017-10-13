@@ -14,6 +14,6 @@ public interface IUserOperation {
     public int selectUsersCount();
     public String getUserpwd(String name);
     public Users getUser(String name);
-    public List<Users> getClientUsers();// 获取普通用户信息
-    public int delUser(int id);// 删除用户
+    public List<Users> getClientUsers(); 
+    public int delUser(int id);
 }

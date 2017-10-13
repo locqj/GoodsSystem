@@ -16,7 +16,7 @@ public class CategoryService {
 		CategoryDao dao = new CategoryDao();
 		dao.addCategory(name);
 		 
-		return new ModelAndView("redirect:/categoryadmin/index");
+		return new ModelAndView("redirect:/index");
 	}
 
 }

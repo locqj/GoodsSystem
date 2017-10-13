@@ -40,7 +40,7 @@ public class CategoryController {
 	@RequestMapping("toaddcategory")
 	public ModelAndView doadd() throws UnsupportedEncodingException {
 		request.setCharacterEncoding("utf-8");
-		String name = request.getParameter("name");
+		String name = request.getParameter("category_name");
 		return service.addCategory(name);
 
 	}
