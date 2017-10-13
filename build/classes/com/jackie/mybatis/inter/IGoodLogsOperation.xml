@@ -19,6 +19,11 @@
 			<result column="gcode" property="code" />
 			<result column="gname" property="name" />
 		</association>
+		<association property="user" column="user_code"
+			 javaType="Users">
+			<id column="uid" property="id" />
+			<result column="uname" property="name" />
+		</association>
 	</resultMap>
 	<insert id="add" parameterType="GoodLogs" useGeneratedKeys="true"
 		keyProperty="id">
@@ -28,14 +33,20 @@
 	
 	<!-- all list -->
 	<select id="getList" parameterType="string" resultMap="GoodLogsSelect">
-		select g.code "gcode", g.name "gname",  g.num "gnum", g.id "gid", l.id "id",
+		select g.code "gcode", g.name "gname",  g.num "gnum", g.id "gid", l.id "id", u.name "uname", u.id "uid", 
 		l.goods_code "goods_code", l.num "num", l.status "status", l.user_code "user_code", l.time "time"
-		 from goods g, good_logs l where l.goods_code = g.code and l.status_del = 1
+		 from goods g, good_logs l, users u where l.goods_code = g.code and l.user_code = u.code and l.status_del = 1
 	</select>
 	<!-- 指定user_code -->
 	<select id="getListByUserCode" parameterType="string" resultMap="GoodLogsSelect">
-		select g.code "gcode", g.name "gname",  g.num "gnum", g.id "gid", l.id "id",
+		select g.code "gcode", g.name "gname",  g.num "gnum", g.id "gid", l.id "id", u.name "uname", u.id "uid",
 		l.goods_code "goods_code", l.num "num", l.status "status", l.user_code "user_code", l.time "time"
-		 from goods g, good_logs l where l.goods_code = g.code and l.status_del = 1 and user_code = #{user_code}
+		 from goods g, good_logs l, users u where l.goods_code = g.code and l.user_code = u.code and
+		  l.status_del = 1 and user_code = #{user_code}
 	</select>
+	
+	<!-- 更新申请-->
+	<update id="updateLog" parameterType="java.lang.Integer">
+		update good_logs set status=#{1} where id=#{0}
+	</update>
 </mapper>

@@ -97,4 +97,17 @@ public class GoodLogsDao {
 			session.close();
 		}
 	}
+
+	public int updateLog(int id, int status) {
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			IGoodLogsOperation glo = session.getMapper(IGoodLogsOperation.class);
+			int goodlogs = glo.updateLog(id, status);
+			System.out.println(goodlogs);
+			return goodlogs;
+		} finally {
+			session.close();
+		}
+		
+	}
 }

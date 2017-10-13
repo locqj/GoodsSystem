@@ -184,24 +184,42 @@
               <div class="table-responsive">
                 <table class="table table-striped b-t b-light text-sm">
                   <thead>
+                  
                     <tr>
                       <th class="th-sortable" data-toggle="class"><i class="iconfont icon-ide"></i>ID</th>
                       <th><i class="iconfont icon-leimu"></i>用户名</th>
+                      <th><i class="iconfont icon-leimu"></i>申请易耗品</th>
                       <th><i class="iconfont icon-leimu"></i>申请数量</th>
+                      
+                      <th><i class="iconfont icon-leimu"></i>申请时间</th>
+                      <th><i class="iconfont icon-leimu"></i>申请状态</th>
                       <th><i class="iconfont icon-chulizhuangtai"></i>操作</th>
                     </tr>
                   </thead>
                   <tbody>
-                  	<c:forEach var="list" items="${users}" varStatus="status">
+                  	<c:forEach var="list" items="${goodlogs}" varStatus="status">
                     <tr>
                       <td>${status.index + 1}</td>
-                      <td>${list.name}</td>
-                      <td>10</td>
+                      <td>${list.user.name}</td>
+                      <td>${list.good.name}</td>
+                      <td>${list.num}</td>
+                      <td>${list.time}</td>
+                      <td><c:choose>
+   							<c:when test="${list.status == 1}">  
+         						<i class="iconfont icon-chenggong1"></i>已通过
+   							</c:when>
+   							<c:when test="${list.status == 2}">  
+         						<i class="iconfont icon-zhuangtai_weichuli"></i>被驳回
+   							</c:when>
+   							<c:otherwise> 
+   								<i class="iconfont icon-chulizhuangtai1"></i>待审核
+   							</c:otherwise>
+							</c:choose></td>
                       <td width="200">
                       	<div class="btn-group">
-                      		<button type="button" class="btn btn-success" onclick="">通过</button>
-                      		<button type="button" class="btn btn-warning">驳回</button>
-                      		<button type="button" class="btn btn-default">撤销</button>
+                      		<button type="button" class="btn btn-success" onclick="goodLogsCheck(${list.id}, 1, ${list.num })">通过</button>
+                      		<button type="button" class="btn btn-warning" onclick="goodLogsCheck(${list.id}, 2, ${list.num })">驳回</button>
+                      		<button type="button" class="btn btn-default" onclick="goodLogsCheck(${list.id}, 0, ${list.num })">撤销</button>
                   		</div>
              
 					  </td>
@@ -347,6 +365,23 @@
 				alert('删除成功');
 				$('.C'+id).hide();
 			});	
+		}
+	}
+	//提交操作状态
+	function goodLogsCheck(id, status, num){
+		var msg = "";
+		if(status == 1) {
+			msg = "确定通过吗?";
+		} else if(status == 2){
+			msg = "确定驳回吗？";
+		} else {
+			msg = "确定撤销吗？";
+		}
+		if(confirm(msg)){
+			$.post("goodlogscheck", {id: id, status: status, num: num}, function(data){
+				alert("操作成功");
+				window.location.reload();
+			});
 		}
 	}
 	
