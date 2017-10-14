@@ -12,7 +12,7 @@
  
 <section id="content" class="m-t-lg wrapper-md animated fadeInDown">
 <div class="container aside-xxl">
-	<a class="navbar-brand block">消耗品申请管理系统</a>
+	<a class="navbar-brand block">实验室低值易耗品管理系统</a>
 	<section class="panel panel-default m-t-lg bg-white"> <header
 		class="panel-heading text-center"> <strong>登录</strong> </header>
 	<form action="login" class="panel-body wrapper-lg" method="post" onsubmit="return check()">

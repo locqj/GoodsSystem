@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="static/css/loginregister.css" type="text/css" />
 </head>
 <section id="content" class="m-t-lg wrapper-md animated fadeInDown">
-  <div class="container aside-xxl"> <a class="navbar-brand block" href="index.html">消耗品申请管理系统--用户注册</a>
+  <div class="container aside-xxl"> <a class="navbar-brand block" href="index.html">实验室低值易耗品管理系统--用户注册</a>
     <section class="panel panel-default m-t-lg bg-white">
       <header class="panel-heading text-center"> <strong>注册</strong> </header>
       <form action="toregister" class="panel-body wrapper-lg" method="post">

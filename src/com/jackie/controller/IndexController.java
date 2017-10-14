@@ -104,6 +104,7 @@ public class IndexController {
 				return "error";
 			}
 		} else {
+			ajaxservice.updategoodlogs(id, status);
 			a = goodsservice.goodNumChange(num, good_code);
 			if (a == 1) {
 				return "ok";

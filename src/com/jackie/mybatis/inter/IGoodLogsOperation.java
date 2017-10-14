@@ -9,5 +9,6 @@ public interface IGoodLogsOperation {
 	public List<GoodLogs> getList();
 	public List<GoodLogs> getListByUserCode(String user_code);
 	public int updateLog(int id, int status_code);
+	public int delGoodLog(int id);
 
 }

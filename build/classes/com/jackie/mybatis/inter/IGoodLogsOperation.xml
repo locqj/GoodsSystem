@@ -49,4 +49,9 @@
 	<update id="updateLog" parameterType="java.lang.Integer">
 		update good_logs set status=#{1} where id=#{0}
 	</update>
+	
+	<!-- 更新申请-->
+	<update id="delGoodLog" parameterType="java.lang.Integer">
+		update good_logs set status_del=0 where id=#{id}
+	</update>
 </mapper>

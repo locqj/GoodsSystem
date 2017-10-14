@@ -10,10 +10,18 @@ public class Goods {
 	private String code;
 	private String time;
 	private Category category;
- 
+	private String num1;
  
 
  
+	public String getNum1() {
+		return num1;
+	}
+
+	public void setNum1(String num1) {
+		this.num1 = num1;
+	}
+
 	public Category getCategory() {
 		return category;
 	}

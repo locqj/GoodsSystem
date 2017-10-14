@@ -108,4 +108,18 @@ public class GoodLogsDao {
 		}
 		
 	}
+
+	
+	public int delGoodLog(int id) {
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			IGoodLogsOperation glo= session.getMapper(IGoodLogsOperation.class);
+			int status= glo.delGoodLog(id);
+			 session.commit();
+	         return status;
+
+		} finally {
+			session.close();
+		}
+	}
 }

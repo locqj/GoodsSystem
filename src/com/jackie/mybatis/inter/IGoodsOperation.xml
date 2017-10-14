@@ -9,10 +9,11 @@
 		<result column="code" property="code" />
 		<result column="time" property="time" />
 		<result column="num" property="num" />
+		<result column="num1" property="num1" />
 		<!-- 一对一的关系 -->
 		<!-- property: 指的是属性的值, javaType：指的是元素的类型 , column 字段值 -->
 		<association property="category" column="category_code"
-			 javaType="Category">
+			javaType="Category">
 			<id column="code" property="code" />
 			<result column="cid" property="id" />
 			<result column="ccode" property="code" />
@@ -21,24 +22,30 @@
 	</resultMap>
 	<!-- 返回users条数 -->
 	<select id="getCount" parameterType="string" resultType="java.lang.Integer">
-		select count(id) from goods where status_del = 1
+		select
+		count(id) from goods where status_del = 1
 	</select>
 
- 	<!-- 返回good num -->
+	<!-- 返回good num -->
 	<select id="getGoodNum" parameterType="string" resultType="java.lang.Integer">
 		select num from goods where code= #{code}
 	</select>
 
 	<!-- 关联查询 -->
 	<select id="getList" parameterType="string" resultMap="GoodsWithCategory">
-		select g.code "code", g.name "name", g.time "time", g.num "num", g.id "id",
-		c.name "cname", c.code "ccode", c.id "cid" from goods g, category c where g.category_code=c.code and g.status_del = 1
+		select
+		g.code "code", g.name "name", g.time "time", g.num "num", g.id "id",
+		g.num1 "num1", c.name "cname", c.code "ccode", c.id "cid" from goods
+		g,
+		category c where g.category_code=c.code and g.status_del = 1
 	</select>
 
 	<insert id="add" parameterType="Goods" useGeneratedKeys="true"
 		keyProperty="id">
-		insert into goods(name, code, category_code, time, num)
-		values(#{name},#{code}, #{category_code}, #{time}, #{num})
+		insert into goods(name, code, category_code, time, num,
+		num1)
+		values(#{name},#{code}, #{category_code}, #{time}, #{num},
+		#{num})
 	</insert>
 
 	<!-- delete good -->
@@ -47,8 +54,9 @@
 		0 where id=#{id}
 	</update>
 	<!-- update good num -->
-	<update id="updateGoodNum" >
+	<update id="updateGoodNum">
 		update goods set num =
-		#{1} where code=#{0}
+		#{1} where
+		code=#{0}
 	</update>
 </mapper>

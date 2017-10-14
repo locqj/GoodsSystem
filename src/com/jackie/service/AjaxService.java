@@ -45,4 +45,9 @@ public class AjaxService {
 		return glo.updateLog(id, status);
 		 
 	}
+
+	public int delGoodLog(int id) {
+		GoodLogsDao glo = new GoodLogsDao();
+		return glo.delGoodLog(id);
+	}
 }
