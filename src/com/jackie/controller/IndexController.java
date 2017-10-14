@@ -19,6 +19,7 @@ import com.jackie.dao.CategoryDao;
 import com.jackie.dao.GoodLogsDao;
 import com.jackie.dao.GoodsDao;
 import com.jackie.service.AjaxService;
+import com.jackie.service.GoodsService;
 import com.jackie.service.IndexService;
 import com.jackie.service.LoginService;
 import com.jackie.vo.Category;
@@ -32,6 +33,8 @@ public class IndexController {
 	LoginService service;
 	@Resource
 	IndexService loginservice;
+	@Resource
+	GoodsService goodsservice;
 	@Resource
 	HttpServletRequest request;
 	@Resource
@@ -77,13 +80,39 @@ public class IndexController {
 	 */
 	@RequestMapping(value="goodlogscheck", method=RequestMethod.POST)
 	@ResponseBody
-	public String dogoodlogs(int id, int status){
-		int a = ajaxservice.updategoodlogs(id, status); 
-		if (a == 1) {
-			return "ok";
+	public String dogoodlogs(int id, int status, int num, String good_code){
+		
+		int a = 0;
+		if(status == 1){
+			int dist = goodsservice.getGoodNum(num, good_code);
+			if(dist >= 0){
+				a = ajaxservice.updategoodlogs(id, status);
+				if (a == 1) {
+					return "ok";
+				} else {
+					return "error";
+				}
+				
+			} else{
+				return "full";
+			}
+		} else if (status == 2){
+			a = ajaxservice.updategoodlogs(id, status);
+			if (a == 1) {
+				return "ok";
+			} else {
+				return "error";
+			}
 		} else {
-			return "error";
+			a = goodsservice.goodNumChange(num, good_code);
+			if (a == 1) {
+				return "ok";
+			} else {
+				return "error";
+			}
 		}
+		
+		
 		
 	}
 }

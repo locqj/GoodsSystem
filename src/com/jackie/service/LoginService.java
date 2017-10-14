@@ -36,8 +36,6 @@ public class LoginService {
 				//将用户code name 存入session
                 session.setAttribute("username", user.getName());
                 session.setAttribute("usercode", user.getCode());
-                
-                System.out.println(user.getStatus());
                 //1--普通用户, 2--超级用户
                 if(user.getStatus() == 1) {
                 	return new ModelAndView("redirect:/indexc");

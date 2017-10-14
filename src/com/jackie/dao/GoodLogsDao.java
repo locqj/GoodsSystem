@@ -70,9 +70,7 @@ public class GoodLogsDao {
 		try {
 			IGoodLogsOperation glo = session.getMapper(IGoodLogsOperation.class);
 			List<GoodLogs> goodlogs = glo.getList();
-			// for(Category c :category){
-			// System.out.println(c.getName());
-			// }
+			 
 			return goodlogs;
 		} finally {
 			session.close();

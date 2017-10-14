@@ -90,7 +90,7 @@ public class UsersDao {
 		return "null";
 	}
 	/**
-	 * ��ȡ�û���Ϣ
+	 * 
 	 * @param name
 	 * @return
 	 */
@@ -108,7 +108,7 @@ public class UsersDao {
 		
     }
     /**
-     * ��ȡ��ͨ�û��б�
+     *  
      * @return
      */
     public List<Users> getClientUsers() {

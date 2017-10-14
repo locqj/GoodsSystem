@@ -41,9 +41,7 @@ public class GoodsDao {
 		try {
 			IGoodsOperation go = session.getMapper(IGoodsOperation.class);
 			List<Goods> goods = go.getList();
-			// for(Category c :category){
-			// System.out.println(c.getName());
-			// }
+			 
 			return goods;
 		} finally {
 			session.close();
@@ -101,6 +99,32 @@ public class GoodsDao {
 		} finally {
 			session.close();
 		}
+	}
+
+	public int getGoodNum(String code) {
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			IGoodsOperation go = session.getMapper(IGoodsOperation.class);
+			int num= go.getGoodNum(code);
+			return num;
+		} finally {
+			session.close();
+		}
+		
+	}
+
+	public int updateGoodNum(String code, int r_num) {
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+
+			IGoodsOperation go = session.getMapper(IGoodsOperation.class);
+			int a = go.updateGoodNum(code, r_num);
+			session.commit();
+			return a;
+		} finally {
+			session.close();
+		}
+
 	}
 
 

@@ -24,7 +24,7 @@
 		<a class="btn btn-link visible-xs" data-toggle="class:nav-off-screen"
 			data-target="#nav"> <i class="fa fa-bars"></i>
 		</a> <a href="#" class="navbar-brand" data-toggle="fullscreen"> <img
-			src="static/images/logo.png" class="m-r-sm">易耗品管理
+			  class="m-r-sm">易耗品管理
 		</a> <a class="btn btn-link visible-xs" data-toggle="dropdown"
 			data-target=".nav-user"> <i class="fa fa-cog"></i>
 		</a>
@@ -216,10 +216,10 @@
    							</c:otherwise>
 							</c:choose></td>
                       <td width="200">
-                      	<div class="btn-group">
-                      		<button type="button" class="btn btn-success" onclick="goodLogsCheck(${list.id}, 1, ${list.num })">通过</button>
-                      		<button type="button" class="btn btn-warning" onclick="goodLogsCheck(${list.id}, 2, ${list.num })">驳回</button>
-                      		<button type="button" class="btn btn-default" onclick="goodLogsCheck(${list.id}, 0, ${list.num })">撤销</button>
+                      	<div class="btn-group" >
+                      		<button type="button" class="btn btn-success" onclick="goodLogsCheck(${list.status}, ${list.id}, 1, ${list.num }, '${list.good.code }')">通过</button>
+                      		<button type="button" class="btn btn-warning" onclick="goodLogsCheck(${list.status}, ${list.id}, 2, ${list.num }, '${list.good.code }')">驳回</button>
+                      		<button type="button" class="btn btn-default" onclick="goodLogsCheck(${list.status}, ${list.id}, 0, ${list.num }, '${list.good.code }')">撤销</button>
                   		</div>
              
 					  </td>
@@ -317,6 +317,9 @@
 <script type="text/javascript"
 	src="http://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
 <script type="text/javascript">
+	 
+	 
+	
 	function goodcheck() {
 		if ($('#good_name').val() == "") {
 			alert("请填写易耗品");
@@ -342,8 +345,12 @@
 		var r = confirm("确定删除吗？");
 		if(r){
 			$.post('useradmin/del', {id: id}, function(data){
-				alert('删除成功');
-				$('.U'+id).hide();
+				if (data == "ok") {
+					alert('删除成功');
+					$('.U'+id).hide();	
+				} else {
+					alert("网络问题，请稍后重试!");
+				}
 			});	
 		}
 	}
@@ -352,8 +359,12 @@
 		var r = confirm("确定删除吗？");
 		if(r){
 			$.post('goodsadmin/del', {id: id}, function(data){
-				alert('删除成功');
-				$('.G'+id).hide();
+				if (data == "ok") {
+					alert('删除成功');
+					$('.G'+id).hide();	
+				} else {
+					alert("网络问题，请稍后重试!");
+				}
 			});	
 		}
 	}
@@ -362,27 +373,50 @@
 		var r = confirm("确定删除吗？");
 		if(r){
 			$.post('categoryadmin/del', {id: id}, function(data){
-				alert('删除成功');
-				$('.C'+id).hide();
+				if (data == "ok") {
+					alert('删除成功');
+					$('.C'+id).hide();	
+				} else {
+					alert("网络问题，请稍后重试!");
+				}
+				
 			});	
 		}
 	}
 	//提交操作状态
-	function goodLogsCheck(id, status, num){
-		var msg = "";
-		if(status == 1) {
-			msg = "确定通过吗?";
-		} else if(status == 2){
-			msg = "确定驳回吗？";
-		} else {
-			msg = "确定撤销吗？";
+	function goodLogsCheck(pre_status, id, status, num, good_code){
+		if(pre_status == status) {
+			alert("非法操作");
+		} else if (pre_status == 1 && status == 2) {
+			alert("非法操作，该申请已通过，不得驳回");
+		} else if (pre_status == 0 && status == 0) {
+			alert("非法操作，该申请未通过，不得撤销");
+		} else if (pre_status == 2 && status == 0) {
+				alert("非法操作，该申请已驳回，不得撤销");
+		}else {
+			var msg = "";
+			if (status == 1) {
+				msg = "确定通过吗?";
+			} else if (status == 2){
+				msg = "确定驳回吗？";
+			} else {
+				msg = "确定撤销吗？";
+			}
+			if(confirm(msg)){
+				$.post("goodlogscheck", {id: id, status: status, num: num, good_code: good_code}, function(data){
+					if(data == "ok") {
+						alert("操作成功");
+						window.location.reload();
+					} else if (data == "full") {
+						alert("处理失败，该消耗品不足");
+					} else {
+						alert("网络问题，请稍后重试!");
+					}
+					
+				});
+			}	
 		}
-		if(confirm(msg)){
-			$.post("goodlogscheck", {id: id, status: status, num: num}, function(data){
-				alert("操作成功");
-				window.location.reload();
-			});
-		}
+		
 	}
 	
 	$("#goods").change(function(){

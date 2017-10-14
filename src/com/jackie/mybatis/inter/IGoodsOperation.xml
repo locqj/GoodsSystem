@@ -21,11 +21,13 @@
 	</resultMap>
 	<!-- 返回users条数 -->
 	<select id="getCount" parameterType="string" resultType="java.lang.Integer">
-		select
-		count(id) from goods where status_del = 1
+		select count(id) from goods where status_del = 1
 	</select>
 
- 
+ 	<!-- 返回good num -->
+	<select id="getGoodNum" parameterType="string" resultType="java.lang.Integer">
+		select num from goods where code= #{code}
+	</select>
 
 	<!-- 关联查询 -->
 	<select id="getList" parameterType="string" resultMap="GoodsWithCategory">
@@ -39,9 +41,14 @@
 		values(#{name},#{code}, #{category_code}, #{time}, #{num})
 	</insert>
 
-	<!-- 删除good -->
+	<!-- delete good -->
 	<update id="delGood" parameterType="int">
 		update goods set status_del =
 		0 where id=#{id}
+	</update>
+	<!-- update good num -->
+	<update id="updateGoodNum" >
+		update goods set num =
+		#{1} where code=#{0}
 	</update>
 </mapper>

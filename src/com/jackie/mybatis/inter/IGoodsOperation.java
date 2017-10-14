@@ -9,4 +9,6 @@ public interface IGoodsOperation {
 	public int getCount();
 	public List<Goods> getList();
 	public int delGood(int id);
+	public int getGoodNum(String code);
+	public int updateGoodNum(String code, int r_num);
 }
