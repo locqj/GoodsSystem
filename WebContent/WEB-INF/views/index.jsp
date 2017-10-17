@@ -42,8 +42,6 @@
 		<li class="dropdown"><a href="#goodlogstable"
 			class="dropdown-toggle dker"><span class="font-bold">用户申请管理</span>
 		</a></li>
-		<li class="dropdown"><a href="#"><span class="font-bold">导出</span>
-		</a></li>
 
 	</ul>
 	<ul class="nav navbar-nav navbar-right hidden-xs nav-user">
